@@ -66,6 +66,6 @@ Bazı firmalar için Ar-Ge Merkezi, TÜBİTAK destekleri ya da bugünkü yapıda
 - **Başvuru ve kurulum:** Proje dosyası, başvuru evrakı ve yönetici şirketle görüşmeler. Hakem değerlendirmesi ve kabul süresi bölgeden bölgeye değişir.
 - **Yürütme:** Kabulden sonra portal, puantaj ve kayıt düzenini ilk aydan kuruyoruz.
 
-Başvuru dosyası, firmanın işi bilip dosyanın işi anlatmadığı noktada reddedilir. En sık beş ret nedenini [burada](/rehber/teknopark-basvurusu-red-nedenleri/) topladık.
+Başvuru dosyası, firmanın işi bilip dosyanın işi anlatmadığı noktada reddedilir. En sık altı ret nedenini [burada](/rehber/teknopark-basvurusu-red-nedenleri/) topladık.
 
 > Dayanak: 4691 s. Teknoloji Geliştirme Bölgeleri Kanunu geç. md. 2 ve Uygulama Yönetmeliği; 5746 s. Kanun md. 3; 5520 s. KVK md. 32/C; 10766 s. CB Kararı (RG 25.12.2025); 10803 s. CB Kararı (RG 31.12.2025); 49 Sıra No.lu Genel Tebliğ (RG 30.12.2025).
