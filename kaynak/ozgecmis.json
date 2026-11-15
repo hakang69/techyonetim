@@ -1,0 +1,157 @@
+{
+  "hakan": {
+    "name": "Hakan Gümüş",
+    "title": "SMMM · CPA · Bağımsız Denetçi · Ar-Ge ve Teknopark Danışmanı",
+    "role": "Kurucu Ortak",
+    "roleColor": "#2563eb",
+    "contact": [
+      "+90 530 664 12 88"
+    ],
+    "summary": "25 yıllık finans ve teknoloji yönetimi deneyimini teknopark ekosistemiyle buluşturan bir danışman. Bir bankanın teknopark yazılım organizasyonunda 17 yıl CFO; teknopark firmalarını temsil eden bir sektör derneğinde 16 yıl yönetim kurulu başkanlığı.",
+    "experience": [
+      {
+        "role": "Kurucu Ortak / Danışman CPA",
+        "place": "Tech Consulting, İstanbul",
+        "period": "Kas 2022 – Günümüz",
+        "desc": "4691 ve 5746 kapsamında 70+ teknoloji firmasına teknopark danışmanlığı ve stratejik mali danışmanlık."
+      },
+      {
+        "role": "Finansal Danışman",
+        "place": "MagicPAY, İstanbul",
+        "period": "Eyl 2023 – Günümüz",
+        "desc": "AI destekli ödeme altyapısı şirketine finansal danışmanlık."
+      },
+      {
+        "role": "Yönetim Kurulu Başkanı",
+        "place": "TEKNODER, Gebze",
+        "period": "2009 – May 2025 (16 yıl)",
+        "desc": "Marmara Bölgesi teknoparkları girişimciler derneği kurucu üye ve YK Başkanlığı."
+      },
+      {
+        "role": "Division CFO",
+        "place": "IBTech – QNB Finansbank BT İştiraki",
+        "period": "Eyl 2005 – Eyl 2022 (17 yıl)",
+        "desc": "QNB Finansbank'ın teknoparkta kurulu BT şirketinde CFO."
+      },
+      {
+        "role": "Bağımsız YK Üyesi",
+        "place": "Link Bilgisayar A.Ş. (BIST: LINK)",
+        "period": "Oca 2015 – Ara 2020",
+        "desc": "ERP ve kurumsal yazılım alanında faaliyet gösteren halka açık şirkette bağımsız YK üyeliği."
+      },
+      {
+        "role": "Finance Manager",
+        "place": "Link Holding A.Ş., İstanbul",
+        "period": "1999 – 2005 (6 yıl)",
+        "desc": "Sermaye piyasası odaklı holding bünyesinde mali işler genel müdür yardımcılığı."
+      }
+    ],
+    "education": [
+      {
+        "role": "İşletme Fakültesi, Lisans",
+        "place": "İstanbul Üniversitesi",
+        "period": "1988 – 1994"
+      }
+    ],
+    "licenses": [
+      "CPA — Serbest Muhasebeci Mali Müşavir (2001)",
+      "IAC — Bağımsız Denetçi (2013)"
+    ],
+    "skills": [
+      "Teknopark & Ar-Ge Mevzuatı",
+      "4691 / 5746 Kanunları",
+      "Mali Müşavirlik (CPA)",
+      "Bağımsız Denetim",
+      "Finansal Planlama",
+      "Risk Sermayesi",
+      "Girişim Ekosistemi"
+    ],
+    "orgs": [
+      "TEKNODER — Kurucu Üye & YK Başkanı",
+      "TÜBİTAK TÜSSİDE Danışma Kurulu",
+      "Sağlık Bilimleri Teknoparkı Proje Değerlendirme Komisyonu",
+      "TRANGELS Yatırımcılar Grubu"
+    ]
+  },
+  "sule": {
+    "name": "Şule Tunç Gümüş, PhD.",
+    "title": "Kurucu Ortak · Kurumsal Yönetim & İletişim",
+    "role": "Kurucu Ortak",
+    "roleColor": "#7c3aed",
+    "contact": [],
+    "summary": "İnsan kaynakları, kurumsal dönüşüm ve teknoloji girişimciliğini bir arada yürüten çok yönlü bir lider. Çok uluslu bir teknoloji şirketinde İK direktörlüğünden bir teknoloji girişiminin kuruculuğuna, kamu destekli KOBİ mentörlüğünden iş hukuku bilirkişiliğine uzanan bir profil.",
+    "experience": [
+      {
+        "role": "Kurucu Ortak / Kurumsal Yönetim",
+        "place": "Tech Consultancy, İstanbul",
+        "period": "2024 – Günümüz",
+        "desc": "Şirketin kurumsallaşma, yeniden yapılanma ve hizmette mükemmellik çalışmalarını yürütmektedir."
+      },
+      {
+        "role": "Partner / Managing Director",
+        "place": "Deep Bio Tech Akıllı Tarım Teknolojileri A.Ş.",
+        "period": "Eyl 2024 – Günümüz",
+        "desc": "Endüstriyel biyoteknoloji ve akıllı tarım teknolojileri şirketinde yönetici ortaklık."
+      },
+      {
+        "role": "Kurucu",
+        "place": "Aktif Danışmanlık Ltd. Şti., İstanbul",
+        "period": "2014 – Günümüz",
+        "desc": "Kurumsal dönüşüm ve yeniden yapılandırma projeleri. İK danışmanlığı, organizasyonel yapılandırma."
+      },
+      {
+        "role": "Co-Founder",
+        "place": "LettaLocks Dijital Kilit Teknolojileri, Gebze",
+        "period": "Eki 2016 – Eyl 2024 (8 yıl)",
+        "desc": "Endüstriyel yönetilebilir elektronik kilit teknolojileri alanında yazılım ve Ar-Ge şirketi."
+      },
+      {
+        "role": "HRD — İnsan Kaynakları Direktörü",
+        "place": "Canon Eurasia, İstanbul",
+        "period": "2010 – 2014",
+        "desc": "Avrasya bölgesinde İK yönetimi ve organizasyonel gelişim."
+      },
+      {
+        "role": "HR Consultant & Project Manager",
+        "place": "HRM & Project Management, İstanbul",
+        "period": "2004 – 2009",
+        "desc": "İK danışmanlığı ve proje yönetimi hizmetleri."
+      }
+    ],
+    "education": [
+      {
+        "role": "Doktora (PhD) — İşletme Yönetimi",
+        "place": "Gebze Teknik Üniversitesi",
+        "period": ""
+      },
+      {
+        "role": "Yüksek Lisans (M.A.) — İnsan Kaynakları Yönetimi",
+        "place": "Marmara Üniversitesi · Onur Belgesi ile mezun",
+        "period": ""
+      }
+    ],
+    "licenses": [
+      "TÜBİTAK 1601 KOBİ Mentörü (Oca 2016)",
+      "High Performing Team Management — TMSDI Limited",
+      "Bilirkişi — İş Hukuku Davaları, İstanbul Adalet Bakanlığı",
+      "İngilizce — Tam profesyonel yetkinlik",
+      "Almanca — Sınırlı çalışma yetkinliği"
+    ],
+    "skills": [
+      "İK Yönetimi",
+      "Kurumsal Dönüşüm",
+      "Organizasyonel Yapılandırma",
+      "Kültürel Değişim",
+      "Proje Yönetimi",
+      "Teknoloji Girişimciliği",
+      "Mentörlük",
+      "İş Hukuku Bilirkişiliği"
+    ],
+    "orgs": [
+      "ADIM ADIM Initiative (NGO)",
+      "BUĞDAY Ekolojik Yaşam Derneği",
+      "PERYÖN",
+      "TÜBİTAK/TTBF Mentors Society"
+    ]
+  }
+}

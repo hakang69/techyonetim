@@ -76,7 +76,7 @@ def json_ld(veri):
     return '<script type="application/ld+json">' + json.dumps(veri, ensure_ascii=False) + "</script>"
 
 
-def sayfa(baslik, aciklama, yol, govde, ek_head="", og_turu="website", aktif=""):
+def sayfa(baslik, aciklama, yol, govde, ek_head="", og_turu="website", aktif="", robots="index,follow"):
     adres = SITE + yol
 
     def nav_link(href, ad):
@@ -109,7 +109,7 @@ def sayfa(baslik, aciklama, yol, govde, ek_head="", og_turu="website", aktif="")
 <meta name="twitter:title" content="{e(baslik)}">
 <meta name="twitter:description" content="{e(aciklama)}">
 <meta name="twitter:image" content="{PAYLASIM_GORSELI}">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="{robots}">
 {ek_head}
 </head>
 <body>
@@ -119,10 +119,11 @@ def sayfa(baslik, aciklama, yol, govde, ek_head="", og_turu="website", aktif="")
     <nav class="nav" aria-label="Ana menü">
       {nav_link("/#hizmetler", "Hizmetler")}
       {nav_link("/#surec", "Süreç")}
-      {nav_link("/#uygunluk", "Uygunluk")}
+      {nav_link("/uygunluk-kontrolu/", "Uygunluk")}
       {nav_link("/#mevzuat", "Mevzuat")}
       {nav_link("/rehber/", "Rehber")}
-      <a class="btn btn-p" href="/#iletisim">Durum analizi talep et</a>
+      {nav_link("/hakkimizda/", "Hakkımızda")}
+      <a class="btn btn-p" href="/iletisim/">Durum analizi talep et</a>
     </nav>
   </div>
 </header>
@@ -134,14 +135,18 @@ def sayfa(baslik, aciklama, yol, govde, ek_head="", og_turu="website", aktif="")
     <div class="firma"><strong>{MARKA}</strong>{UNVAN}<br>{ADRES}<br>{TELEFON} · <a href="mailto:{EPOSTA}">{EPOSTA}</a></div>
     <nav aria-label="Alt menü">
       <a href="/#hizmetler">Hizmetler</a>
+      <a href="/uygunluk-kontrolu/">Uygunluk kontrolü</a>
+      <a href="/#mevzuat">Mevzuat gündemi</a>
       <a href="/rehber/">Rehber</a>
-      <a href="/#uygunluk">Uygunluk kontrolü</a>
-      <a href="/#iletisim">İletişim</a>
-      <a href="/#kvkk">KVKK Aydınlatma Metni</a>
-      <a href="/#gizlilik">Gizlilik Politikası</a>
+      <a href="/hakkimizda/">Hakkımızda</a>
+      <a href="/iletisim/">İletişim</a>
+      <a href="/kvkk/">KVKK Aydınlatma Metni</a>
+      <a href="/gizlilik/">Gizlilik Politikası</a>
     </nav>
+    <div class="telif">© {datetime.date.today().year} {UNVAN} Tüm hakları saklıdır.</div>
   </div>
 </footer>
+<script src="/assets/site.js" defer></script>
 </body>
 </html>
 """
@@ -254,6 +259,107 @@ def rehber_dizini(gruplar, yazilar):
     return yol, sayfa(f"Rehber: Teknopark ve Ar-Ge Teşvik Yazıları | {MARKA}", aciklama, yol, govde, ek_head, aktif="Rehber")
 
 
+def parca(ad):
+    return open(os.path.join(KAYNAK, "sayfalar", ad), encoding="utf-8").read()
+
+
+FIRMA_LD = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": MARKA,
+    "legalName": UNVAN,
+    "description": "Teknopark başvurusu, Ar-Ge ve Tasarım Merkezi kurulumu, portal raporlama ve istisna uyumu. 20 yıllık teknopark ekosistemi deneyimiyle uçtan uca teşvik yönetimi.",
+    "url": SITE + "/",
+    "logo": SITE + "/logo.png",
+    "image": PAYLASIM_GORSELI,
+    "telephone": TELEFON,
+    "email": EPOSTA,
+    "areaServed": "TR",
+    "address": {"@type": "PostalAddress", "streetAddress": "Cevizli Mah. Zuhal Cad. No: 46E, Ritim İstanbul A5 Blok D:4 Kat:2",
+                "addressLocality": "Maltepe", "addressRegion": "İstanbul", "postalCode": "34846", "addressCountry": "TR"},
+    "knowsAbout": ["Teknopark danışmanlığı", "Ar-Ge Merkezi", "Tasarım Merkezi", "4691 sayılı Kanun", "5746 sayılı Kanun",
+                   "Ar-Ge teşvikleri", "Portal raporlama"],
+}
+SITE_LD = {"@context": "https://schema.org", "@type": "WebSite", "name": MARKA,
+           "alternateName": ["Tech Yönetim", "techyonetim.com"], "url": SITE + "/", "inLanguage": "tr-TR"}
+
+ANA_SAYFA_PARCALARI = ["01-giris.html", "02-hizmetler.html", "03-surec.html", "04-kim-icin.html", "05-uygunluk-ozet.html",
+                       "06-tesvikler.html", "07-mevzuat.html", "08-rehber.html", "09-danismanlar.html", "10-iletisim.html"]
+
+
+def ana_sayfa():
+    baslik = f"Teknopark Danışmanlığı ve Ar-Ge Teşvik Yönetimi | {MARKA}"
+    govde = "\n".join(parca(p) for p in ANA_SAYFA_PARCALARI)
+    return "/", sayfa(baslik, FIRMA_LD["description"], "/", govde, json_ld(FIRMA_LD) + "\n" + json_ld(SITE_LD))
+
+
+def bolum_sayfasi(yol, baslik, aciklama, kirinti, parca_adi, aktif="", robots="index,follow", ek=""):
+    izi = [("Ana sayfa", "/"), (kirinti, yol)]
+    govde = (f'<div class="wrap sayfa-izi">{yol_izi([("Ana sayfa", "/"), (kirinti, None)])}</div>\n'
+             + parca(parca_adi) + ek)
+    ek_head = json_ld(yol_izi_ld(izi))
+    return yol, sayfa(f"{baslik} | {MARKA}", aciklama, yol, govde, ek_head, aktif=aktif, robots=robots)
+
+
+def ozgecmis_html(anahtar, cv, foto):
+    def liste(ogeler):
+        return "<ul>" + "".join(f"<li>{e(x)}</li>" for x in ogeler) + "</ul>" if ogeler else ""
+
+    isler = "".join(
+        f'<div class="cv-is"><strong>{e(x["role"])}</strong><span class="yer">{e(x["place"])}</span>'
+        f'<span class="tarih">{e(x.get("period", ""))}</span>' + (f'<p>{e(x["desc"])}</p>' if x.get("desc") else "") + "</div>"
+        for x in cv.get("experience", [])
+    )
+    egitim = "".join(
+        f'<div class="cv-is"><strong>{e(x["role"])}</strong><span class="yer">{e(x["place"])}</span>'
+        f'<span class="tarih">{e(x.get("period", ""))}</span></div>'
+        for x in cv.get("education", [])
+    )
+    iletisim = " · ".join(
+        f'<a href="tel:{re.sub(r"[^0-9+]", "", c)}">{e(c)}</a>' if re.match(r"^\+?[\d\s()-]+$", c) else e(c)
+        for c in cv.get("contact", [])
+    )
+    cipler = "".join(f"<span>{e(x)}</span>" for x in cv.get("skills", []))
+    sag = ""
+    if cv.get("licenses"):
+        sag += f"<h3>Lisanslar ve belgeler</h3>{liste(cv['licenses'])}"
+    if cv.get("orgs"):
+        sag += f"<h3>Kuruluşlar ve kurullar</h3>{liste(cv['orgs'])}"
+    if cipler:
+        sag += f'<h3>Yetkinlikler</h3><div class="cipler">{cipler}</div>'
+    if egitim:
+        sag += f"<h3>Eğitim</h3>{egitim}"
+    return f"""<article class="cv" id="ozgecmis-{anahtar}">
+  <div class="cv-bas">
+    <span class="rol">{e(cv.get("role", ""))}</span>
+    <h2>{e(cv["name"])}</h2>
+    <p class="unvan">{e(cv.get("title", ""))}</p>
+    {f'<p class="ozet">{e(cv["summary"])}</p>' if cv.get("summary") else ""}
+    {f'<p class="ozet">{iletisim}</p>' if iletisim else ""}
+  </div>
+  <div class="cv-govde">
+    <div><h3>Deneyim</h3>{isler}</div>
+    <div>{sag}</div>
+  </div>
+</article>"""
+
+
+def hakkimizda():
+    yol = "/hakkimizda/"
+    cvler = json.load(open(os.path.join(KAYNAK, "ozgecmis.json"), encoding="utf-8"))
+    fotolar = {"hakan": "/assets/img/hakan-gumus.jpg", "sule": "/assets/img/sule-tunc-gumus.jpg"}
+    ozgecmisler = "".join(ozgecmis_html(k, v, fotolar.get(k)) for k, v in cvler.items())
+    ek = f'<div class="sec"><div class="wrap" style="padding-top: 0;">{ozgecmisler}</div></div>'
+    kisiler = [{"@type": "Person", "name": v["name"], "jobTitle": v.get("title", ""), "image": SITE + fotolar[k],
+                "worksFor": {"@type": "Organization", "name": MARKA, "url": SITE + "/"}} for k, v in cvler.items()]
+    yol, html_ = bolum_sayfasi(yol, "Hakkımızda: Danışmanlarımız",
+                               "Teknopark mevzuatı, teşvik yönetimi ve kurumsal gelişim deneyimini bir arada taşıyan kurucu ortaklar: Hakan Gümüş ve Şule Tunç Gümüş, PhD.",
+                               "Hakkımızda", "hakkimizda-ust.html", aktif="Hakkımızda", ek=ek)
+    ld = json_ld({"@context": "https://schema.org", "@type": "AboutPage", "url": SITE + yol, "inLanguage": "tr-TR",
+                  "about": {"@type": "Organization", "name": MARKA, "url": SITE + "/", "member": kisiler}})
+    return yol, html_.replace("</head>", ld + "\n</head>", 1)
+
+
 def site_haritasi(kayitlar):
     satirlar = "".join(
         f"  <url><loc>{SITE}{yol}</loc><lastmod>{tarih}</lastmod></url>\n" for yol, tarih in kayitlar
@@ -282,7 +388,27 @@ def main():
     if eksik:
         raise ValueError(f"gruplar.json içinde olmayan yazılar: {sorted(eksik)}")
 
-    harita = [("/", max(m["guncelleme"] for m in yazilar.values()))]
+    bugun = datetime.date.today().isoformat()
+    harita = []
+    sayfalar = [
+        ana_sayfa(),
+        bolum_sayfasi("/uygunluk-kontrolu/", "Teknopark ve Ar-Ge Merkezi Uygunluk Kontrolü",
+                      "Dört soruda Teknopark, Ar-Ge Merkezi ve Tasarım Merkezi eşiklerini kontrol edin. Cevaplarınız hiçbir yere gönderilmez, tarayıcınızdan çıkmaz.",
+                      "Uygunluk kontrolü", "uygunluk.html", aktif="Uygunluk"),
+        hakkimizda(),
+        bolum_sayfasi("/iletisim/", "İletişim: Durum Analizi Talep Edin",
+                      "Teknopark, Ar-Ge ve Tasarım Merkezi ile teşvik mevzuatı konusunda durum analizi talep edin. Ritim İstanbul, Maltepe. İki iş günü içinde dönüş.",
+                      "İletişim", "iletisim.html"),
+    ]
+    for yol, icerik in sayfalar:
+        print("yazıldı:", yaz(yol, icerik))
+        harita.append((yol, bugun))
+    for yol, baslik, aciklama, kirinti, ad in [
+        ("/kvkk/", "KVKK Aydınlatma Metni", "Tech Yönetim ve Finansal Danışmanlık Ltd. Şti. kişisel verilerin korunması aydınlatma metni.", "KVKK Aydınlatma Metni", "kvkk.html"),
+        ("/gizlilik/", "Gizlilik Politikası", "techyonetim.com gizlilik politikası: çerez, izleme aracı ve dış kaynak kullanımı.", "Gizlilik Politikası", "gizlilik.html"),
+    ]:
+        yol, icerik = bolum_sayfasi(yol, baslik, aciklama, kirinti, ad, robots="noindex,follow")
+        print("yazıldı:", yaz(yol, icerik))
     yol, icerik = rehber_dizini(gruplar, yazilar)
     print("yazıldı:", yaz(yol, icerik))
     harita.append((yol, max(m["guncelleme"] for m in yazilar.values())))
