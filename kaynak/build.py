@@ -46,13 +46,21 @@ def md_oku(yol):
     return meta, m.group(2)
 
 
+def satir_ici(metin):
+    """Satır içi biçimler: **kalın** ve [metin](/site-ici-adres/). Dış adrese bağlantı kabul edilmez."""
+    s = e(metin)
+    s = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s)
+    s = re.sub(r"\[([^\]]+)\]\((/[^)\s]*)\)", r'<a href="\2">\1</a>', s)
+    return s
+
+
 def md_html(govde):
-    """Desteklenen biçimler: paragraf, '## ara başlık', '- madde', '> dayanak notu'."""
+    """Desteklenen biçimler: paragraf, '## ara başlık', '- madde', '> dayanak notu', satır içi **kalın** ve [bağlantı](/adres/)."""
     parcalar, liste = [], []
 
     def liste_kapat():
         if liste:
-            parcalar.append("<ul>" + "".join(f"<li>{e(x)}</li>" for x in liste) + "</ul>")
+            parcalar.append("<ul>" + "".join(f"<li>{satir_ici(x)}</li>" for x in liste) + "</ul>")
             liste.clear()
 
     for blok in re.split(r"\n\s*\n", govde.strip()):
@@ -67,7 +75,7 @@ def md_html(govde):
         elif ilk.startswith("> "):
             parcalar.append(f'<p class="dayanak">{e(" ".join(s[2:].strip() for s in satirlar))}</p>')
         else:
-            parcalar.append(f"<p>{e(' '.join(s.strip() for s in satirlar))}</p>")
+            parcalar.append(f"<p>{satir_ici(' '.join(s.strip() for s in satirlar))}</p>")
     liste_kapat()
     return "\n".join(parcalar)
 
@@ -134,6 +142,9 @@ def sayfa(baslik, aciklama, yol, govde, ek_head="", og_turu="website", aktif="",
   <div class="wrap">
     <div class="firma"><strong>{MARKA}</strong>{UNVAN}<br>{ADRES}<br>{TELEFON} · <a href="mailto:{EPOSTA}">{EPOSTA}</a></div>
     <nav aria-label="Alt menü">
+      <a href="/teknoparka-gecis/">Teknoparka geçiş</a>
+      <a href="/geleneksel-sirketler-icin-teknopark/">Geleneksel şirketler için teknopark</a>
+      <a href="/teknoparktaki-sirketler/">Teknoparktaki şirketler</a>
       <a href="/#hizmetler">Hizmetler</a>
       <a href="/uygunluk-kontrolu/">Uygunluk kontrolü</a>
       <a href="/#mevzuat">Mevzuat gündemi</a>
@@ -211,7 +222,7 @@ def yazi_sayfasi(meta, govde_md, ilgili):
   </div>
   <aside class="cagri">
     <p>{e(cagri)}</p>
-    <a class="btn btn-p" href="/#iletisim">Durum analizi talep et</a>
+    <a class="btn btn-p" href="/iletisim/">Durum analizi talep et</a>
   </aside>
   {ilgili_html}
 </article>
@@ -284,7 +295,70 @@ SITE_LD = {"@context": "https://schema.org", "@type": "WebSite", "name": MARKA,
            "alternateName": ["Tech Yönetim", "techyonetim.com"], "url": SITE + "/", "inLanguage": "tr-TR"}
 
 ANA_SAYFA_PARCALARI = ["01-giris.html", "02-hizmetler.html", "03-surec.html", "04-kim-icin.html", "05-uygunluk-ozet.html",
-                       "06-tesvikler.html", "07-mevzuat.html", "08-rehber.html", "09-danismanlar.html", "10-iletisim.html"]
+                       "06-tesvikler.html", "07-mevzuat.html", "08-rehber.html", "09-danismanlar.html",
+                       "09b-gizlilik-ilkemiz.html", "10-iletisim.html"]
+
+
+def segment_sayfasi(meta, govde_md, yazilar):
+    """Hedef kitle (segment) sayfası: koyu giriş, gövde metni, başlangıç çalışması kutusu, ilgili yazılar."""
+    yol = f"/{meta['slug']}/"
+    izi = [("Ana sayfa", "/"), (meta["kirinti"], yol)]
+    kapsam = "".join(f"<li>{e(x.strip())}</li>" for x in meta["urun_kapsam"].split("|"))
+    ilgili = [yazilar[s.strip()] for s in meta.get("ilgili", "").split(",") if s.strip()]
+    ilgili_html = ""
+    if ilgili:
+        linkler = "".join(
+            f'<a href="/rehber/{m["slug"]}/"><strong>{e(m["kart_basligi"])}</strong><span>{e(m["aciklama"])}</span></a>'
+            for m in ilgili
+        )
+        ilgili_html = f'<section class="ilgili" aria-label="İlgili yazılar"><h2>Konuyla ilgili yazılar</h2>{linkler}</section>'
+    hizmet_ld = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": meta["urun_adi"],
+        "serviceType": meta["kirinti"],
+        "description": meta["aciklama"],
+        "url": SITE + yol,
+        "areaServed": "TR",
+        "inLanguage": "tr-TR",
+        "provider": {"@type": "ProfessionalService", "name": MARKA, "url": SITE + "/"},
+    }
+    govde = f"""<div class="wrap narrow">
+{yol_izi([("Ana sayfa", "/"), (meta["kirinti"], None)])}
+<article class="art seg">
+  <header class="art-head">
+    <span class="pill">{e(meta["eyebrow"])}</span>
+    <h1>{e(meta["baslik"])}</h1>
+    <p class="ozet">{e(meta["lede"])}</p>
+    <div class="seg-cta">
+      <a class="btn btn-a" href="/iletisim/">Durum analizi talep et</a>
+      <a class="btn btn-g" href="/uygunluk-kontrolu/">Uygunluğunuzu kontrol edin</a>
+    </div>
+  </header>
+  <div class="art-body">
+{md_html(govde_md)}
+  </div>
+  <section class="urun" aria-label="Başlangıç çalışması">
+    <span class="urun-etiket">Başlangıç çalışması</span>
+    <h2>{e(meta["urun_adi"])}</h2>
+    <p>{e(meta["urun_ozet"])}</p>
+    <h3>Kapsam</h3>
+    <ul>{kapsam}</ul>
+    <dl>
+      <div><dt>Çıktı</dt><dd>{e(meta["urun_cikti"])}</dd></div>
+      <div><dt>Süre</dt><dd>{e(meta["urun_sure"])}</dd></div>
+    </dl>
+  </section>
+  <aside class="cagri">
+    <p>{e(meta["cagri"])}</p>
+    <a class="btn btn-p" href="/iletisim/">Durum analizi talep et</a>
+  </aside>
+  <p class="gizlilik-not"><strong>Gizlilik ilkemiz:</strong> Çalıştığımız şirketlerin adını ve projelerini hiçbir yerde paylaşmayız. <a href="/#gizlilik-ilkemiz">Neden?</a></p>
+  {ilgili_html}
+</article>
+</div>"""
+    ek_head = json_ld(hizmet_ld) + "\n" + json_ld(yol_izi_ld(izi))
+    return yol, sayfa(f"{meta['seo_basligi']} | {MARKA}", meta["aciklama"], yol, govde, ek_head)
 
 
 def ana_sayfa():
@@ -349,7 +423,7 @@ def hakkimizda():
     cvler = json.load(open(os.path.join(KAYNAK, "ozgecmis.json"), encoding="utf-8"))
     fotolar = {"hakan": "/assets/img/hakan-gumus.jpg", "sule": "/assets/img/sule-tunc-gumus.jpg"}
     ozgecmisler = "".join(ozgecmis_html(k, v, fotolar.get(k)) for k, v in cvler.items())
-    ek = f'<div class="sec"><div class="wrap" style="padding-top: 0;">{ozgecmisler}</div></div>'
+    ek = f'<div class="sec"><div class="wrap" style="padding-top: 0;">{ozgecmisler}</div></div>\n' + parca("09b-gizlilik-ilkemiz.html")
     kisiler = [{"@type": "Person", "name": v["name"], "jobTitle": v.get("title", ""), "image": SITE + fotolar[k],
                 "worksFor": {"@type": "Organization", "name": MARKA, "url": SITE + "/"}} for k, v in cvler.items()]
     yol, html_ = bolum_sayfasi(yol, "Hakkımızda: Danışmanlarımız",
@@ -409,6 +483,13 @@ def main():
     ]:
         yol, icerik = bolum_sayfasi(yol, baslik, aciklama, kirinti, ad, robots="noindex,follow")
         print("yazıldı:", yaz(yol, icerik))
+    segment_dir = os.path.join(KAYNAK, "segmentler")
+    segmentler = sorted((md_oku(os.path.join(segment_dir, ad)) for ad in os.listdir(segment_dir) if ad.endswith(".md")),
+                        key=lambda x: int(x[0]["sira"]))
+    for meta, govde in segmentler:
+        yol, icerik = segment_sayfasi(meta, govde, yazilar)
+        print("yazıldı:", yaz(yol, icerik))
+        harita.append((yol, meta["guncelleme"]))
     yol, icerik = rehber_dizini(gruplar, yazilar)
     print("yazıldı:", yaz(yol, icerik))
     harita.append((yol, max(m["guncelleme"] for m in yazilar.values())))
