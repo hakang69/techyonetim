@@ -1,0 +1,34 @@
+[
+  {
+    "no": "Grup 1",
+    "baslik": "Giriş kararı",
+    "aciklama": "Hangi yapıya girebilirsiniz, ne kazandırır, neden reddedilir.",
+    "ilgili_hizmet": "Başvuru danışmanlığı",
+    "yazilar": [
+      "teknopark-arge-merkezi-tekmer-karsilastirma",
+      "arge-merkezi-kurulum-sartlari",
+      "teknopark-basvurusu-red-nedenleri"
+    ]
+  },
+  {
+    "no": "Grup 2",
+    "baslik": "Yürütme ve uyum",
+    "aciklama": "Girdikten sonra her ay tekrar eden iş ve en sık kaçırılan noktalar.",
+    "ilgili_hizmet": "Portal raporlama ve teşvik operasyonu",
+    "yazilar": [
+      "teknoparkta-ilk-yil-yukumlulukleri",
+      "teknopark-uzaktan-calisma-oranlari-2026"
+    ]
+  },
+  {
+    "no": "Grup 3",
+    "baslik": "Eşik ve risk",
+    "aciklama": "Teşviki kaybettiren yükümlülükler ve incelemede sorulanlar.",
+    "ilgili_hizmet": "İstisna uyumu ve risk kontrolü",
+    "yazilar": [
+      "girisim-sermayesi-fonu-yukumlulugu",
+      "istisna-ymm-tasdik-raporu",
+      "teknopark-incelemesi-ilk-bes-soru"
+    ]
+  }
+]
