@@ -23,7 +23,7 @@ Yıllık istisna veya indirim tutarı 5.000.000 TL'yi aşan firmalar. Bu eşiği
 
 ## Nasıl yerine getirilir
 
-Aktarım, girişim sermayesi yatırım fonu payı veya girişim sermayesi yatırım ortaklığı hissesi alınarak ya da kuluçkadaki firmalara sermaye olarak konularak yapılabilir ve ilgili yılın sonuna kadar tamamlanmalıdır.
+Aktarım, girişim sermayesi yatırım fonu payı veya girişim sermayesi yatırım ortaklığı hissesi alınarak ya da kuluçkadaki firmalara sermaye olarak konularak yapılabilir. Yatırım, istisnanın uygulandığı yılı izleyen yılın sonuna kadar tamamlanmalıdır; 2025 kazançları için son tarih 31.12.2026'dır.
 
 ## Yapılmazsa
 
