@@ -3,12 +3,13 @@
     "no": "Grup 1",
     "baslik": "Giriş kararı",
     "aciklama": "Hangi yapıya girebilirsiniz, ne kazandırır, neden reddedilir.",
-    "ilgili_hizmet": "Başvuru danışmanlığı",
+    "ilgili_hizmet": "Teknopark, Ar-Ge ve Tasarım Merkezi",
     "yazilar": [
       "teknopark-arge-merkezi-tekmer-karsilastirma",
       "arge-merkezi-kurulum-sartlari",
       "teknopark-basvurusu-red-nedenleri"
-    ]
+    ],
+    "ilgili_hizmet_yol": "/hizmetler/teknopark-arge-tasarim-merkezi/"
   },
   {
     "no": "Grup 2",
@@ -18,17 +19,19 @@
     "yazilar": [
       "teknoparkta-ilk-yil-yukumlulukleri",
       "teknopark-uzaktan-calisma-oranlari-2026"
-    ]
+    ],
+    "ilgili_hizmet_yol": "/hizmetler/portal-raporlama/"
   },
   {
     "no": "Grup 3",
     "baslik": "Eşik ve risk",
     "aciklama": "Teşviki kaybettiren yükümlülükler ve incelemede sorulanlar.",
-    "ilgili_hizmet": "İstisna uyumu ve risk kontrolü",
+    "ilgili_hizmet": "İstisna uyumu ve risk takibi",
     "yazilar": [
       "girisim-sermayesi-fonu-yukumlulugu",
       "istisna-ymm-tasdik-raporu",
       "teknopark-incelemesi-ilk-bes-soru"
-    ]
+    ],
+    "ilgili_hizmet_yol": "/hizmetler/istisna-uyumu/"
   }
 ]

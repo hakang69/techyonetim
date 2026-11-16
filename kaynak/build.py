@@ -125,7 +125,7 @@ def sayfa(baslik, aciklama, yol, govde, ek_head="", og_turu="website", aktif="",
   <div class="wrap">
     <a class="logo" href="/">TECH CONSULTANCY</a>
     <nav class="nav" aria-label="Ana menü">
-      {nav_link("/#hizmetler", "Hizmetler")}
+      {nav_link("/hizmetler/", "Hizmetler")}
       {nav_link("/#surec", "Süreç")}
       {nav_link("/uygunluk-kontrolu/", "Uygunluk")}
       {nav_link("/#mevzuat", "Mevzuat")}
@@ -145,7 +145,7 @@ def sayfa(baslik, aciklama, yol, govde, ek_head="", og_turu="website", aktif="",
       <a href="/teknoparka-gecis/">Teknoparka geçiş</a>
       <a href="/geleneksel-sirketler-icin-teknopark/">Geleneksel şirketler için teknopark</a>
       <a href="/teknoparktaki-sirketler/">Teknoparktaki şirketler</a>
-      <a href="/#hizmetler">Hizmetler</a>
+      <a href="/hizmetler/">Hizmetler</a>
       <a href="/uygunluk-kontrolu/">Uygunluk kontrolü</a>
       <a href="/#mevzuat">Mevzuat gündemi</a>
       <a href="/rehber/">Rehber</a>
@@ -242,7 +242,7 @@ def rehber_dizini(gruplar, yazilar):
         bloklar.append(
             f'<section class="grup"><div class="grup-bas"><span class="no">{e(g["no"])}</span>'
             f'<h2>{e(g["baslik"])}</h2><p>{e(g["aciklama"])}</p>'
-            f'<a href="/#hizmetler">İlgili hizmet: {e(g["ilgili_hizmet"])} →</a></div>'
+            f'<a href="{e(g.get("ilgili_hizmet_yol", "/hizmetler/"))}">İlgili hizmet: {e(g["ilgili_hizmet"])} →</a></div>'
             f"<div>{linkler}</div></section>"
         )
     aciklama = "Teknopark, Ar-Ge Merkezi ve teşvik mevzuatını açıklayan, eşikleri gösteren ve riski adlandıran yazılar."
@@ -361,9 +361,160 @@ def segment_sayfasi(meta, govde_md, yazilar):
     return yol, sayfa(f"{meta['seo_basligi']} | {MARKA}", meta["aciklama"], yol, govde, ek_head)
 
 
-def ana_sayfa():
+KART_STIL = ("border-radius: 22px; background: var(--surface); padding: 32px 32px 30px; display: flex; flex-direction: column; "
+             "box-shadow: rgba(22, 35, 58, 0.04) 0px 1px 2px, rgba(22, 35, 58, 0.16) 0px 14px 34px -16px; "
+             "transition: transform 0.28s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.28s cubic-bezier(0.22, 0.61, 0.36, 1), background 0.28s;")
+HARF_STIL = ("display: flex; width: 42px; height: 42px; border-radius: 999px; background: rgb(244, 236, 228); color: rgb(138, 90, 60); "
+             "align-items: center; justify-content: center; font-family: &quot;Source Serif 4&quot;, Georgia, serif; font-size: 20px; "
+             "line-height: 1; margin-bottom: 18px;")
+
+
+def hizmetleri_oku():
+    """kaynak/hizmetler/: dizin.md (hizmetler sayfasının metni) ve 'sira' alanına göre dizilen hizmet dosyaları."""
+    d = os.path.join(KAYNAK, "hizmetler")
+    dizin = md_oku(os.path.join(d, "dizin.md"))
+    hizmetler = []
+    for ad in os.listdir(d):
+        if ad.endswith(".md") and ad != "dizin.md":
+            meta, govde = md_oku(os.path.join(d, ad))
+            hizmetler.append(dict(meta, _govde=govde))
+    return dizin, sorted(hizmetler, key=lambda m: int(m["sira"]))
+
+
+def hizmet_karti(m):
+    aciklama = satir_ici(m["kart_aciklama"]).replace("<strong>", '<strong style="color: var(--accent); font-weight: 700;">')
+    maddeler = "".join(
+        '<div style="display: flex; gap: 12px; font-size: 14.5px; line-height: 1.5; padding: 5px 0px; color: var(--text);">'
+        '<span aria-hidden="true" style="flex: 0 0 auto; width: 11px; height: 1.5px; background: var(--accent); margin-top: 10px;"></span>'
+        f"<span>{e(x.strip())}</span></div>"
+        for x in m["kart_maddeler"].split("|")
+    )
+    not_ = ""
+    if m.get("kart_not"):
+        not_ = ('<p style="margin: 16px 0px 0px; font-size: 13px; line-height: 1.6; color: rgb(138, 90, 60); '
+                f'background: rgb(244, 236, 228); border-radius: 14px; padding: 14px 16px;">{e(m["kart_not"])}</p>')
+    return (
+        f'<div data-c="svccard" class="scp0" style="{KART_STIL}">'
+        f'<span style="{HARF_STIL}">{e(m["harf"])}</span>'
+        '<h3 data-c="svctitle" style="font-size: 23px; font-weight: 600; line-height: 1.24; margin: 0px 0px 10px; '
+        f'letter-spacing: -0.012em; min-height: 2.48em;">{e(m["kart_basligi"])}</h3>'
+        '<p data-c="svcdesc" style="font-size: 14.5px; color: var(--muted); line-height: 1.62; margin: 0px 0px 18px; '
+        f'min-height: 8.2em;">{aciklama}</p>'
+        '<div data-c="svclist" style="display: flex; flex-direction: column; gap: 1px; border-top: 1px solid var(--hair); '
+        f'padding-top: 16px;">{maddeler}</div>{not_}'
+        f'<a class="kart-link" style="margin-top: auto; padding-top: 18px;" href="/hizmetler/{m["slug"]}/" '
+        f'aria-label="{e(m["kart_basligi"])}: ayrıntılar">Ayrıntılar →</a></div>'
+    )
+
+
+def hizmet_kartlari(hizmetler):
+    return ('<div data-r="svcgrid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px;">'
+            + "".join(hizmet_karti(m) for m in hizmetler) + "</div>")
+
+
+def hizmet_sayfasi(m, yazilar, hizmetler):
+    yol = f"/hizmetler/{m['slug']}/"
+    izi = [("Ana sayfa", "/"), ("Hizmetler", "/hizmetler/"), (m["kart_basligi"], yol)]
+    kapsam = "".join(f"<li>{e(x.strip())}</li>" for x in m["kart_maddeler"].split("|"))
+    kart_not = f'<p>{e(m["kart_not"])}</p>' if m.get("kart_not") else ""
+    ilgili = [yazilar[s.strip()] for s in m.get("ilgili", "").split(",") if s.strip()]
+    ilgili_html = ""
+    if ilgili:
+        linkler = "".join(
+            f'<a href="/rehber/{y["slug"]}/"><strong>{e(y["kart_basligi"])}</strong><span>{e(y["aciklama"])}</span></a>'
+            for y in ilgili
+        )
+        ilgili_html = f'<section class="ilgili" aria-label="İlgili yazılar"><h2>Konuyla ilgili yazılar</h2>{linkler}</section>'
+    diger = "".join(
+        f'<a href="/hizmetler/{h["slug"]}/"><strong>{e(h["harf"])} · {e(h["kart_basligi"])}</strong><span>{e(h["aciklama"])}</span></a>'
+        for h in hizmetler if h["slug"] != m["slug"]
+    )
+    hizmet_ld = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": m["kart_basligi"],
+        "serviceType": m["kart_basligi"],
+        "description": m["aciklama"],
+        "url": SITE + yol,
+        "areaServed": "TR",
+        "inLanguage": "tr-TR",
+        "provider": {"@type": "ProfessionalService", "name": MARKA, "url": SITE + "/"},
+    }
+    govde = f"""<div class="wrap narrow">
+{yol_izi([("Ana sayfa", "/"), ("Hizmetler", "/hizmetler/"), (m["kart_basligi"], None)])}
+<article class="art seg">
+  <header class="art-head">
+    <span class="pill">Hizmet {e(m["harf"])}</span>
+    <h1>{e(m["baslik"])}</h1>
+    <p class="ozet">{e(m["lede"])}</p>
+    <div class="seg-cta">
+      <a class="btn btn-a" href="/iletisim/">Durum analizi talep et</a>
+      <a class="btn btn-g" href="/uygunluk-kontrolu/">Uygunluğunuzu kontrol edin</a>
+    </div>
+  </header>
+  <section class="urun" aria-label="Kapsam">
+    <span class="urun-etiket">Kapsam</span>
+    <ul style="margin-top: 16px;">{kapsam}</ul>
+    {kart_not}
+  </section>
+  <div class="art-body">
+{md_html(m["_govde"])}
+  </div>
+  <aside class="cagri">
+    <p>{e(m["cagri"])}</p>
+    <a class="btn btn-p" href="/iletisim/">Durum analizi talep et</a>
+  </aside>
+  <p class="gizlilik-not"><strong>Gizlilik ilkemiz:</strong> Çalıştığımız şirketlerin adını ve projelerini hiçbir yerde paylaşmayız. <a href="/#gizlilik-ilkemiz">Neden?</a></p>
+  {ilgili_html}
+  <section class="ilgili" aria-label="Diğer hizmetler"><h2>Diğer hizmetler</h2>{diger}</section>
+</article>
+</div>"""
+    ek_head = json_ld(hizmet_ld) + "\n" + json_ld(yol_izi_ld(izi))
+    return yol, sayfa(f"{m['seo_basligi']} | {MARKA}", m["aciklama"], yol, govde, ek_head, aktif="Hizmetler")
+
+
+def hizmet_dizini(dizin, hizmetler):
+    meta, govde_md = dizin
+    yol = "/hizmetler/"
+    izi = [("Ana sayfa", "/"), ("Hizmetler", yol)]
+    liste_ld = {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Hizmetler",
+        "url": SITE + yol,
+        "inLanguage": "tr-TR",
+        "hasPart": [{"@type": "Service", "name": h["kart_basligi"], "url": f"{SITE}/hizmetler/{h['slug']}/"} for h in hizmetler],
+    }
+    govde = f"""<div class="wrap">
+{yol_izi([("Ana sayfa", "/"), ("Hizmetler", None)])}
+<div class="sayfa-bas">
+  <span class="eyebrow">Hizmetler</span>
+  <h1>{e(meta["baslik"])}</h1>
+  <p class="lede">{e(meta["lede"])}</p>
+</div>
+{hizmet_kartlari(hizmetler)}
+</div>
+<div class="wrap narrow" style="padding-bottom: 72px;">
+<article class="art">
+  <div class="art-body" style="padding-top: 24px;">
+{md_html(govde_md)}
+  </div>
+  <aside class="cagri">
+    <p>Hangi hattan başlamanız gerektiğini ilk görüşmede birlikte belirleyelim.</p>
+    <a class="btn btn-p" href="/iletisim/">Durum analizi talep et</a>
+  </aside>
+</article>
+</div>"""
+    ek_head = json_ld(liste_ld) + "\n" + json_ld(yol_izi_ld(izi))
+    return yol, sayfa(f"{meta['seo_basligi']} | {MARKA}", meta["aciklama"], yol, govde, ek_head, aktif="Hizmetler")
+
+
+def ana_sayfa(hizmetler):
     baslik = f"Teknopark Danışmanlığı ve Ar-Ge Teşvik Yönetimi | {MARKA}"
     govde = "\n".join(parca(p) for p in ANA_SAYFA_PARCALARI)
+    if "{{HIZMET_KARTLARI}}" not in govde:
+        raise ValueError("02-hizmetler.html içinde {{HIZMET_KARTLARI}} yer tutucusu yok")
+    govde = govde.replace("{{HIZMET_KARTLARI}}", hizmet_kartlari(hizmetler))
     return "/", sayfa(baslik, FIRMA_LD["description"], "/", govde, json_ld(FIRMA_LD) + "\n" + json_ld(SITE_LD))
 
 
@@ -462,10 +613,11 @@ def main():
     if eksik:
         raise ValueError(f"gruplar.json içinde olmayan yazılar: {sorted(eksik)}")
 
+    dizin, hizmetler = hizmetleri_oku()
     bugun = datetime.date.today().isoformat()
     harita = []
     sayfalar = [
-        ana_sayfa(),
+        ana_sayfa(hizmetler),
         bolum_sayfasi("/uygunluk-kontrolu/", "Teknopark ve Ar-Ge Merkezi Uygunluk Kontrolü",
                       "Dört soruda Teknopark, Ar-Ge Merkezi ve Tasarım Merkezi eşiklerini kontrol edin. Cevaplarınız hiçbir yere gönderilmez, tarayıcınızdan çıkmaz.",
                       "Uygunluk kontrolü", "uygunluk.html", aktif="Uygunluk"),
@@ -490,6 +642,13 @@ def main():
         yol, icerik = segment_sayfasi(meta, govde, yazilar)
         print("yazıldı:", yaz(yol, icerik))
         harita.append((yol, meta["guncelleme"]))
+    yol, icerik = hizmet_dizini(dizin, hizmetler)
+    print("yazıldı:", yaz(yol, icerik))
+    harita.append((yol, max([dizin[0]["guncelleme"]] + [h["guncelleme"] for h in hizmetler])))
+    for h in hizmetler:
+        yol, icerik = hizmet_sayfasi(h, yazilar, hizmetler)
+        print("yazıldı:", yaz(yol, icerik))
+        harita.append((yol, h["guncelleme"]))
     yol, icerik = rehber_dizini(gruplar, yazilar)
     print("yazıldı:", yaz(yol, icerik))
     harita.append((yol, max(m["guncelleme"] for m in yazilar.values())))
