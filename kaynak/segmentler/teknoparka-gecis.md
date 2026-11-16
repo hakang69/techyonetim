@@ -39,7 +39,7 @@ Teşvik, kurulması gereken bir düzenle birlikte gelir. Başvurudan önce bunla
 - **Aylık raporlama:** Proje, personel ve muafiyet bilgileri her ay yönetici şirkete ve portala bildirilir. Aylık faaliyet ve muafiyet raporlarının her ayın 15'ine kadar teslim edilmesi gerekir.
 - **Kayıt düzeni:** İstisna kapsamındaki ve kapsam dışı gelir ve giderlerin muhasebede ayrışması, ortak giderlerin dayanağı yazılı bir anahtarla projelere dağıtılması.
 - **Proje disiplini:** Her projenin başlangıcı, bitişi ve çıktıları belgelenir; tamamlanan projeler için bitirme belgesi alınır.
-- **Yıl sonu yükümlülükleri:** İstisna tutarı tek kalemde 500.000 TL'yi, toplamda 1.000.000 TL'yi aşarsa tasdik raporu zorunlu olur. İstisna kazancı 5.000.000 TL'yi aşarsa girişim sermayesi fonu yükümlülüğü doğar.
+- **Yıl sonu yükümlülükleri:** İstisna tutarı tek kalemde 500.000 TL'yi, toplamda 1.000.000 TL'yi aşarsa tasdik raporu zorunlu olur. İstisna kazancı 5.000.000 TL'ye ulaşırsa girişim sermayesi fonu yükümlülüğü doğar.
 
 Bu düzen ilk yıl kurulmazsa sorun, teşvik hakkının kendisinde değil, onu savunacak kayıtların yokluğunda çıkar. İlk yılın tipik açıklarını [ayrı bir yazıda](/rehber/teknoparkta-ilk-yil-yukumlulukleri/) topladık.
 

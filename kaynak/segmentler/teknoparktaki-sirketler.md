@@ -59,7 +59,7 @@ Destek personelinin ücret teşviki, Ar-Ge personeli sayısının %10'unu aşmay
 İki yükümlülük, gözden kaçtığında telafisi en zor olanlardır.
 
 - **Tasdik raporu:** Tek bir istisna veya indirim 500.000 TL'yi, birden fazlasının toplamı 1.000.000 TL'yi aşarsa rapor zorunludur. Beyanname verme süresini izleyen iki ay içinde ibraz edilmezse istisna hakkı kaybedilir. Ayrıntısı [burada](/rehber/istisna-ymm-tasdik-raporu/).
-- **Girişim sermayesi fonu:** İstisna kazancı 5.000.000 TL'yi aşan şirketler için %3'lük yatırım yükümlülüğü vardır. Ayrıntısı [burada](/rehber/girisim-sermayesi-fonu-yukumlulugu/).
+- **Girişim sermayesi fonu:** İstisna kazancı 5.000.000 TL ve üzerinde olan şirketler için %3'lük yatırım yükümlülüğü vardır. Ayrıntısı [burada](/rehber/girisim-sermayesi-fonu-yukumlulugu/).
 
 ## Mali müşavirinizin yerine geçmiyoruz
 

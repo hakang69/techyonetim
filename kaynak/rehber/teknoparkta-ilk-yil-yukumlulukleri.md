@@ -54,7 +54,7 @@ Destek personelinin ücret teşviki, Ar-Ge personeli sayısının %10'unu aşmay
 
 ## 5. Girişim sermayesi fonu yükümlülüğü fark edilmemiş
 
-İstisna kazancı 5.000.000 TL'yi aşan şirketler, istisna tutarının %3'ünü girişim sermayesine yatırmakla yükümlüdür. Yatırım, istisnanın uygulandığı yılı izleyen yılın sonuna kadar yapılmalıdır; 2025 kazançları için son tarih 31.12.2026'dır. Yükümlülük yerine getirilmezse istisnanın %20'si kaybedilir.
+İstisna kazancı 5.000.000 TL ve üzerinde olan şirketler, istisna tutarının %3'ünü girişim sermayesine yatırmakla yükümlüdür. Yatırım, istisnanın uygulandığı yılı izleyen yılın sonuna kadar yapılmalıdır; 2025 kazançları için son tarih 31.12.2026'dır. Yükümlülük yerine getirilmezse istisnanın %20'si kaybedilir.
 
 **Nasıl önlenir:** İstisna tutarının eşiği aşıp aşmayacağı yıl içinde, geçici vergi dönemlerinde izlenir. Ayrıntısını [girişim sermayesi fonu yazımızda](/rehber/girisim-sermayesi-fonu-yukumlulugu/) anlattık.
 
