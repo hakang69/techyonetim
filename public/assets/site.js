@@ -6,16 +6,16 @@
   if (location.pathname === "/" && yeni[location.hash]) location.replace(yeni[location.hash]);
 })();
 
-/* UYGUNLUK KONTROLÜ — cevaplar tarayıcıdan çıkmaz */
-(function () {
-  var kutu = document.getElementById("uyg-sonuc");
-  if (!kutu) return;
-  var base = "font-family: inherit; font-size: 13.5px; font-weight: 500; padding: 9px 16px; border-radius: 999px; cursor: pointer; transition: all .2s cubic-bezier(.22,.61,.36,1); ";
-  var SECILI = base + "border: 1px solid #e2d3c4; background: #f4ece4; color: #8a5a3c; font-weight: 700; box-shadow: 0 6px 14px -8px rgba(138,90,60,0.35);";
-  var BOS = base + "border: 1px solid var(--hair); background: var(--surface); color: var(--text);";
-  var S = {};
+/* UYGUNLUK KONTROLÜ — ortak tanımlar (araç ve iletişim formu birlikte kullanır) */
+var UYG_ETIKET = {
+  toplam: { mikro: "10'dan az", kucuk: "10 – 24", orta: "25 – 99", buyuk: "100 ve üzeri" },
+  arge: { a: "10'dan az", b: "10 – 14", c: "15 – 29", d: "30 ve üzeri" },
+  faaliyet: { yazilim: "Yazılım geliştirme", urun: "Ürün Ar-Ge'si / imalat", tasarim: "Tasarım", belirsiz: "Henüz net değil" },
+  istisna: { yok: "Yok / henüz başlamadık", dusuk: "500.000 TL'nin altında", orta: "500.000 TL – 5.000.000 TL'nin altı", yuksek: "5.000.000 TL ve üzeri" }
+};
+var UYG_KISA = { toplam: "t", arge: "a", faaliyet: "f", istisna: "i" };
 
-  function buildResult(S) {
+function uygunlukSonucu(S) {
       if (!S.toplam || !S.arge || !S.faaliyet) {
         return { show: false, verdict: '', title: '', body: [], flags: [], hasFlags: false };
       }
@@ -72,6 +72,16 @@
   
       return { show: true, verdict, title, body, flags, hasFlags: flags.length > 0 };
     }
+
+/* UYGUNLUK KONTROLÜ — cevaplar tarayıcıdan çıkmaz */
+(function () {
+  var kutu = document.getElementById("uyg-sonuc");
+  if (!kutu) return;
+  var base = "font-family: inherit; font-size: 13.5px; font-weight: 500; padding: 9px 16px; border-radius: 999px; cursor: pointer; transition: all .2s cubic-bezier(.22,.61,.36,1); ";
+  var SECILI = base + "border: 1px solid #e2d3c4; background: #f4ece4; color: #8a5a3c; font-weight: 700; box-shadow: 0 6px 14px -8px rgba(138,90,60,0.35);";
+  var BOS = base + "border: 1px solid var(--hair); background: var(--surface); color: var(--text);";
+  var S = {};
+
   function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
 
   function ciz() {
@@ -80,7 +90,7 @@
       b.setAttribute("style", secili ? SECILI : BOS);
       b.setAttribute("aria-pressed", secili ? "true" : "false");
     });
-    var r = buildResult(S);
+    var r = uygunlukSonucu(S);
     if (!r.show) { kutu.innerHTML = ""; return; }
     var html = '<div style="padding: 24px 26px; background: var(--wash); border-top: 1px solid var(--hair);">' +
       '<span style="display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 4px 10px; margin-bottom: 12px; border: 1.5px solid var(--accent); color: var(--accent);">' + esc(r.verdict) + "</span>" +
@@ -91,7 +101,13 @@
       html += '<div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--accent); display: flex; flex-direction: column; gap: 8px;">' +
         r.flags.map(function (f) { return '<p style="font-size: 13.5px; line-height: 1.55; margin: 0;"><strong>' + esc(f.head) + "</strong> " + esc(f.rest) + "</p>"; }).join("") + "</div>";
     }
-    kutu.innerHTML = html + '<p style="margin: 18px 0 0;"><a class="btn btn-p" href="/iletisim/">Durum analizi talep et →</a></p></div>';
+    var kod = Object.keys(UYG_KISA).filter(function (k) { return S[k]; })
+      .map(function (k) { return UYG_KISA[k] + ":" + S[k]; }).join(",");
+    kutu.innerHTML = html +
+      '<p style="margin: 18px 0 0; display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center;">' +
+      '<a class="btn btn-p" href="/iletisim/#uyg=' + kod + '">Bu sonuçla görüşme talep edin →</a>' +
+      '<a class="kart-link" style="margin-top: 0;" href="/teknopark-tesvikleri/">Teşviklerin ayrıntısı</a></p>' +
+      '<p style="margin: 10px 0 0; font-size: 12.5px; line-height: 1.5; color: var(--faint);">Cevaplarınız iletişim formundaki mesaj alanına aktarılır; formu siz göndermedikçe hiçbir yere iletilmez.</p></div>';
   }
 
   document.addEventListener("click", function (e) {
@@ -103,6 +119,41 @@
   ciz();
 })();
 
+
+
+/* Uygunluk sonucundan gelindiyse: cevapları mesaj alanına yaz, çapayı adres çubuğundan sil.
+   Çapa (#) sunucuya gönderilmez; veri yalnızca ziyaretçi formu gönderirse bize ulaşır. */
+(function () {
+  var m = /^#uyg=([a-z0-9:,]+)$/.exec(location.hash);
+  var mesaj = document.getElementById("f-mesaj");
+  if (!m || !mesaj) return;
+  if (window.history && history.replaceState) history.replaceState(null, "", location.pathname + location.search);
+  var ters = { t: "toplam", a: "arge", f: "faaliyet", i: "istisna" }, S = {};
+  m[1].split(",").forEach(function (p) {
+    var kv = p.split(":"), k = ters[kv[0]];
+    if (k && UYG_ETIKET[k][kv[1]]) S[k] = kv[1];
+  });
+  var r = uygunlukSonucu(S);
+  if (!r.show) return;
+  var satirlar = [
+    "Uygunluk kontrolü sonucum: " + r.verdict + ".",
+    "Toplam personel: " + UYG_ETIKET.toplam[S.toplam],
+    "Ar-Ge, yazılım veya tasarım personeli: " + UYG_ETIKET.arge[S.arge],
+    "Faaliyet: " + UYG_ETIKET.faaliyet[S.faaliyet]
+  ];
+  if (S.istisna) satirlar.push("Yıllık istisna tutarı: " + UYG_ETIKET.istisna[S.istisna]);
+  if (!mesaj.value) mesaj.value = satirlar.join("\n") + "\n\n";
+  var per = document.getElementById("f-per");
+  if (per) for (var i = 0; i < per.options.length; i++) {
+    if (per.options[i].text === UYG_ETIKET.toplam[S.toplam]) { per.selectedIndex = i; break; }
+  }
+  var not = document.createElement("p");
+  not.id = "uyg-not";
+  not.textContent = "Uygunluk kontrolündeki cevaplarınız mesaj alanına eklendi. Göndermeden önce düzenleyebilir ya da silebilirsiniz; formu siz göndermedikçe hiçbir yere iletilmez.";
+  not.style.cssText = "margin: 0 0 16px; font-size: 13.5px; line-height: 1.55; color: #8a5a3c; background: #f4ece4; border-radius: 12px; padding: 12px 14px;";
+  var alanlar = document.querySelector('[data-r="fields"]');
+  if (alanlar) alanlar.parentNode.insertBefore(not, alanlar);
+})();
 
 /* =================================================================
    İLETİŞİM FORMU — Tech Consultancy
