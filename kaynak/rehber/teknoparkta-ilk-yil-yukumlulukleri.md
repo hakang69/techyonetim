@@ -9,7 +9,7 @@ kart_basligi: Teknoparka Girdiniz. Peki Altıncı Ayda Ne Oluyor?
 cagri: Mevcut yükümlülük takviminizi çıkaralım.
 yazar: Hakan Gümüş
 yayin: 2026-10-23
-guncelleme: 2026-11-16
+guncelleme: 2026-11-17
 ---
 Kabul yazısı geldiğinde iş bitmiş gibi görünür. Oysa teknoparkta asıl iş o gün başlar. İlk yıl, şirketin teşvikini yıllarca savunacağı kayıt düzeninin kurulduğu yıldır. Vergi incelemelerinde karşılaşılan sorunların önemli bir kısmının kökü, ilk yıl kurulmayan ya da yanlış kurulan bir düzendir. Bu yazı ilk 30 günde kurulması gerekenleri, ilk yıl en sık atlanan altı yükümlülüğü ve yıllık takvimi anlatıyor.
 
@@ -48,7 +48,7 @@ Aynı ekibin bir kısmı bakım ve destek, bir kısmı proje geliştirme yapıyo
 
 ## 4. Destek personeli sınırı aşılmış
 
-Destek personelinin ücret teşviki, Ar-Ge personeli sayısının %10'unu aşmayan kısım için geçerlidir. İşe alım hızlandığında, özellikle idari ve teknik destek kadrosu büyüdüğünde bu oran sessizce aşılır.
+Destek personelinin ücret teşviki, Ar-Ge personeli sayısının %10'unu (toplam personeli 15'e kadar olan firmalarda %20'sini) aşmayan kısım için geçerlidir. İşe alım hızlandığında, özellikle idari ve teknik destek kadrosu büyüdüğünde bu oran sessizce aşılır.
 
 **Nasıl önlenir:** Her yeni işe alımda oran yeniden hesaplanır. Sınır aşılıyorsa, aşan kısımdaki destek personelinin ücreti teşvik dışında bordrolanır.
 
@@ -66,7 +66,7 @@ Tek bir istisna veya indirim 500.000 TL'yi, birden fazlasının toplamı 1.000.0
 
 ## Bir de biten projeler var
 
-Tamamlanan her proje için bitirme belgesi, proje biter bitmez yönetici şirketten alınmalıdır. Sipariş usulü projelerde müşteri sözleşmeleri dosyada hazır bulunmalıdır. Proje süresi fiili çalışmayla örtüşmeli; tamamlanmış görünen bir projeye harcama yazılmaya devam etmemelidir.
+Tamamlanan her proje için bitirme belgesi, proje biter bitmez alınmalıdır. Sipariş usulü projelerde müşteri sözleşmeleri dosyada hazır bulunmalıdır. Proje süresi fiili çalışmayla örtüşmeli; tamamlanmış görünen bir projeye harcama yazılmaya devam etmemelidir.
 
 ## Yıllık takvim
 

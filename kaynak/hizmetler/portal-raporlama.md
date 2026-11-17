@@ -31,7 +31,7 @@ Bordroyu ve beyannameleri şirketinizin mali müşaviri ya da bordro ekibi hazı
 İnsan kaynakları kararları teşvik tutarını doğrudan değiştirir. Bu yüzden bu kararlar alınırken teşvik etkisinin de masada olmasını öneriyoruz:
 
 - **Sınıflandırma:** Her personelin Ar-Ge, yazılım, tasarım, destek ya da kapsam dışı personel olarak, görev tanımıyla uyumlu biçimde sınıflandırılması.
-- **Destek personeli sınırı:** Destek personelinin ücret teşviki, Ar-Ge personeli sayısının %10'unu aşmayan kısım için geçerlidir. İdari kadro büyürken bu oran sessizce aşılabilir.
+- **Destek personeli sınırı:** Destek personelinin ücret teşviki, Ar-Ge personeli sayısının %10'unu (teknoparkta toplam personeli 15'e kadar olan firmalarda %20'sini) aşmayan kısım için geçerlidir. İdari kadro büyürken bu oran sessizce aşılabilir.
 - **Uzaktan çalışma:** 2026 için bölge ve merkez dışında geçirilen sürelerde oran bilişim personelinde %100, diğer personelde %75'tir. Bilişim personeli ayrımı bordroyu doğrudan etkiler; ayrıntısı [bu yazıda](/rehber/teknopark-uzaktan-calisma-oranlari-2026/).
 - **İşe alım planı:** Temel bilimler mezunu ya da lisansüstü dereceli personel istihdamının teşvike etkisi. Ar-Ge Merkezlerinde stopaj teşviki oranı personelin eğitim düzeyine göre değişir.
 - **Ortaklar ve yöneticiler:** Görev tanımı ve fiili çalışmayla desteklenmeyen Ar-Ge personeli bildirimi, incelemede ilk sorulan konulardandır.

@@ -15,7 +15,7 @@ urun_cikti: Bulgu raporu: kullanılmayan haklar ve riskli uygulamalar, öncelik 
 urun_sure: Şirket ölçeğine göre ilk görüşmede belirlenir
 ilgili: teknoparkta-ilk-yil-yukumlulukleri, teknopark-incelemesi-ilk-bes-soru, teknopark-uzaktan-calisma-oranlari-2026, istisna-ymm-tasdik-raporu, girisim-sermayesi-fonu-yukumlulugu
 cagri: Teknopark uygulamanızın nerede eksik, nerede riskli olduğunu birlikte görelim.
-guncelleme: 2026-11-16
+guncelleme: 2026-11-17
 ---
 Teknoparka girmek bir projedir; içeride kalmak ise her ay tekrarlanan bir iştir. Başvuru dosyası bir kez yazılır, ama portal bildirimi her ay, puantaj her dönem, istisna hesabı her yıl sonunda karşınıza çıkar. Bu döngü kurulduktan sonra çoğu şirkette sahibi belirsiz kalır ve teşvikin bir kısmı sessizce kaybolur.
 
@@ -38,7 +38,7 @@ Teşvik denince akla önce inceleme riski gelir. Oysa uygulamada en az onun kada
 - Yönetici şirkete bildirilmeyen personelin ücreti teşvikten yararlanmaz.
 - Bir projeye bağlanmayan geliştirme işi istisna dışında kalır.
 - Dayanaksız bir gider dağıtımı, istisna kazancını gereğinden düşük gösterebilir.
-- Kanunda sayılan yazılım teslimlerinde KDV istisnası uygulanmamış olabilir.
+- Kanunda sayılan yazılım teslim ve hizmetlerinde KDV istisnası uygulanmamış olabilir.
 
 Bu yüzden kontrolümüz yalnızca riski değil, kullanılmayan hakkı da arar.
 
@@ -52,7 +52,7 @@ Vergi incelemesinde savunulan şey istisnanın kendisi değil, kayıt düzenidir
 - Faturalar projelerle eşleşiyor mu?
 - Proje dosyası fiili faaliyetle örtüşüyor mu?
 
-Destek personelinin ücret teşviki, Ar-Ge personeli sayısının %10'unu aşmayan kısımla sınırlıdır. 2026 için bölge dışında geçen sürelerde oran bilişim personelinde %100, diğer personelde %75'tir; oranın yüksek olması, sürelerin kaydını ve onayını gereksiz kılmaz. Ayrıntısı [burada](/rehber/teknopark-uzaktan-calisma-oranlari-2026/).
+Destek personelinin ücret teşviki, Ar-Ge personeli sayısının %10'unu (toplam personeli 15'e kadar olan firmalarda %20'sini) aşmayan kısımla sınırlıdır. 2026 için bölge dışında geçen sürelerde oran bilişim personelinde %100, diğer personelde %75'tir; oranın yüksek olması, sürelerin kaydını ve onayını gereksiz kılmaz. Ayrıntısı [burada](/rehber/teknopark-uzaktan-calisma-oranlari-2026/).
 
 ## Yıl sonu takvimi
 

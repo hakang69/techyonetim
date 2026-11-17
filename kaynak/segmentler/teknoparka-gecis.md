@@ -15,7 +15,7 @@ urun_cikti: Karar raporu: önerilen yapı, beklenen etki, yükümlülük takvimi
 urun_sure: İki hafta
 ilgili: teknopark-arge-merkezi-tekmer-karsilastirma, teknopark-basvurusu-red-nedenleri, teknoparkta-ilk-yil-yukumlulukleri
 cagri: Teknoparkın sizin için doğru yapı olup olmadığını ilk görüşmede birlikte değerlendirelim.
-guncelleme: 2026-11-16
+guncelleme: 2026-11-17
 ---
 Teknopark kararı çoğu zaman bir kira teklifiyle ya da bir tanıdığın "biz geçtik, çok kazandık" cümlesiyle başlar. Oysa doğru soru teknoparkın ne kadar kazandırdığı değil, sizin faaliyetiniz, ekibiniz ve gelir yapınızla ne kazandıracağıdır. Bu sayfa, o soruyu başvurudan önce cevaplamak için bakılması gerekenleri bir araya getiriyor.
 
@@ -26,7 +26,7 @@ Teknoloji geliştirme bölgesinde yürüttüğünüz Ar-Ge, yazılım ve tasarı
 - **Kurumlar vergisi:** Bölgedeki Ar-Ge, yazılım ve tasarım faaliyetinden doğan kazanç istisnadır.
 - **Ücretler:** Bölgede çalışan Ar-Ge, yazılım ve tasarım personelinin ve sınırlı sayıda destek personelinin bu görevle ilgili ücretleri gelir vergisi ve damga vergisi açısından teşvik kapsamındadır.
 - **SGK işveren primi:** Kapsamdaki personelin işveren hissesinin yarısı bütçeden karşılanır.
-- **KDV:** Bölgede geliştirilen ve kanunda sayılan yazılım ürünlerinin teslimi KDV'den istisnadır.
+- **KDV:** Bölgede üretilen ve kanunda sayılan uygulama yazılımlarının teslim ve hizmetleri KDV'den istisnadır.
 - **Asgari kurumlar vergisi:** 2025'te başlayan yurt içi asgari kurumlar vergisi hesabında teknopark kazanç istisnası, matrahtan düşülebilen istisnalar arasında yer alır.
 
 Personel ağırlıklı çalışan bir yazılım şirketinde bu kalemlerin toplam etkisi, çoğu zaman bölgedeki ofis kirasını ve ek idari yükü rahatlıkla karşılar. "Çoğu zaman" diyoruz, çünkü her zaman değil.

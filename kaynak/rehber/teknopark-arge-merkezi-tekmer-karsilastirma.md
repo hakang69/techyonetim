@@ -9,7 +9,7 @@ kart_basligi: Teknopark, Ar-Ge Merkezi ve TEKMER: Hangisi Size Uygun?
 cagri: Hangi yapının size uygun olduğunu 20 dakikalık ön görüşmede birlikte netleştirelim.
 yazar: Hakan Gümüş
 yayin: 2026-10-23
-guncelleme: 2026-11-16
+guncelleme: 2026-11-17
 ---
 Üçü de "Ar-Ge teşviki" başlığı altında anılıyor ama aynı şey değiller. Seçim, çoğu firmanın sandığı gibi hangisinin daha çok kazandırdığıyla değil, hangisinin şirket yapınıza, gelir modelinize ve ekibinizin nerede çalıştığına uyduğuyla başlıyor. Bu yazı üç yapıyı yan yana koyuyor ve kararı belirleyen asıl farkı gösteriyor.
 
@@ -25,9 +25,9 @@ guncelleme: 2026-11-16
 Faaliyeti bir teknoloji geliştirme bölgesinin fiziki sınırları içine taşımanız gerekir. Merkezinizi taşıyabileceğiniz gibi bölgede şube de açabilirsiniz. Karşılığında beş kalemde teşvik alırsınız; süresi 31.12.2028'e kadardır.
 
 - Bölgedeki Ar-Ge, yazılım ve tasarım faaliyetinden doğan kazanç kurumlar vergisinden istisnadır.
-- Bölgede çalışan Ar-Ge, yazılım ve tasarım personelinin ve Ar-Ge personeli sayısının %10'unu aşmayan destek personelinin bu görevle ilgili ücretleri, gelir vergisi ve damga vergisi açısından teşvik kapsamındadır.
+- Bölgede çalışan Ar-Ge, yazılım ve tasarım personelinin ve Ar-Ge personeli sayısının %10'unu (toplam personeli 15'e kadar olan firmalarda %20'sini) aşmayan destek personelinin bu görevle ilgili ücretleri, gelir vergisi ve damga vergisi açısından teşvik kapsamındadır.
 - Sigorta primi işveren hissesinin yarısı bütçeden karşılanır.
-- Bölgede geliştirilen ve kanunda sayılan yazılım ürünlerinin teslimi KDV'den istisnadır.
+- Bölgede üretilen ve kanunda sayılan uygulama yazılımlarının teslim ve hizmetleri KDV'den istisnadır; yüklenilen KDV indirilebilir, indirimle giderilemeyen kısım iade edilmez.
 - Kazanç istisnası, yurt içi asgari kurumlar vergisi matrahından da düşülebilen istisnalar arasındadır.
 
 Asgari personel şartı yoktur; tek kişilik bir yazılım firması da girebilir. Engel personel sayısı değil; bölgedeki ofis kirası, bölgede çalışma zorunluluğu ve her ay tekrarlanan raporlama yüküdür. 2026 için bölge dışında geçirilen sürelerde ücret teşviki oranı bilişim personelinde %100, diğer personelde %75'tir; bu oran her yıl yeniden belirlenir.

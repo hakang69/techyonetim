@@ -65,6 +65,14 @@ def md_html(govde):
 
     for blok in re.split(r"\n\s*\n", govde.strip()):
         satirlar = [s for s in blok.splitlines() if s.strip()]
+        if all(s.startswith("|") for s in satirlar):
+            liste_kapat()
+            satirlar = [s for s in satirlar if not re.match(r"^\|\s*:?-{3,}", s)]
+            hucreler = [[c.strip() for c in s.strip().strip("|").split("|")] for s in satirlar]
+            bas = "".join(f"<th>{satir_ici(c)}</th>" for c in hucreler[0])
+            gov = "".join("<tr>" + "".join(f"<td>{satir_ici(c)}</td>" for c in r) + "</tr>" for r in hucreler[1:])
+            parcalar.append(f'<div class="tablo"><table><thead><tr>{bas}</tr></thead><tbody>{gov}</tbody></table></div>')
+            continue
         if all(s.startswith("- ") for s in satirlar):
             liste.extend(s[2:].strip() for s in satirlar)
             continue
@@ -128,7 +136,7 @@ def sayfa(baslik, aciklama, yol, govde, ek_head="", og_turu="website", aktif="",
       {nav_link("/hizmetler/", "Hizmetler")}
       {nav_link("/#surec", "Süreç")}
       {nav_link("/uygunluk-kontrolu/", "Uygunluk")}
-      {nav_link("/#mevzuat", "Mevzuat")}
+      {nav_link("/mevzuat-gundemi/", "Mevzuat")}
       {nav_link("/rehber/", "Rehber")}
       {nav_link("/hakkimizda/", "Hakkımızda")}
       <a class="btn btn-p" href="/iletisim/">Durum analizi talep et</a>
@@ -147,7 +155,8 @@ def sayfa(baslik, aciklama, yol, govde, ek_head="", og_turu="website", aktif="",
       <a href="/teknoparktaki-sirketler/">Teknoparktaki şirketler</a>
       <a href="/hizmetler/">Hizmetler</a>
       <a href="/uygunluk-kontrolu/">Uygunluk kontrolü</a>
-      <a href="/#mevzuat">Mevzuat gündemi</a>
+      <a href="/teknopark-tesvikleri/">Teknopark teşvikleri</a>
+      <a href="/mevzuat-gundemi/">Mevzuat gündemi</a>
       <a href="/rehber/">Rehber</a>
       <a href="/hakkimizda/">Hakkımızda</a>
       <a href="/iletisim/">İletişim</a>
@@ -509,6 +518,51 @@ def hizmet_dizini(dizin, hizmetler):
     return yol, sayfa(f"{meta['seo_basligi']} | {MARKA}", meta["aciklama"], yol, govde, ek_head, aktif="Hizmetler")
 
 
+def icerik_sayfasi(m, yazilar):
+    """Bilgi sayfası (teşvikler, mevzuat gündemi): yol izi, başlık, güncelleme tarihi, gövde, çağrı, ilgili yazılar."""
+    yol = f"/{m['slug']}/"
+    izi = [("Ana sayfa", "/"), (m["kirinti"], yol)]
+    ilgili = [yazilar[s.strip()] for s in m.get("ilgili", "").split(",") if s.strip()]
+    ilgili_html = ""
+    if ilgili:
+        linkler = "".join(
+            f'<a href="/rehber/{y["slug"]}/"><strong>{e(y["kart_basligi"])}</strong><span>{e(y["aciklama"])}</span></a>'
+            for y in ilgili
+        )
+        ilgili_html = f'<section class="ilgili" aria-label="İlgili yazılar"><h2>Konuyla ilgili yazılar</h2>{linkler}</section>'
+    sayfa_ld = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": m["baslik"],
+        "description": m["aciklama"],
+        "url": SITE + yol,
+        "inLanguage": "tr-TR",
+        "dateModified": m["guncelleme"],
+        "publisher": {"@type": "Organization", "name": MARKA, "logo": {"@type": "ImageObject", "url": SITE + "/logo.png"}},
+    }
+    govde = f"""<div class="wrap narrow">
+{yol_izi([("Ana sayfa", "/"), (m["kirinti"], None)])}
+<article class="art">
+  <header class="art-head">
+    <span class="pill">{e(m["eyebrow"])}</span>
+    <h1>{e(m["baslik"])}</h1>
+    <p class="ozet">{e(m["lede"])}</p>
+    <p class="art-meta">Güncelleme: {tarih_tr(m["guncelleme"])}</p>
+  </header>
+  <div class="art-body">
+{md_html(m["_govde"])}
+  </div>
+  <aside class="cagri">
+    <p>{e(m["cagri"])}</p>
+    <a class="btn btn-p" href="/iletisim/">Durum analizi talep et</a>
+  </aside>
+  {ilgili_html}
+</article>
+</div>"""
+    ek_head = json_ld(sayfa_ld) + "\n" + json_ld(yol_izi_ld(izi))
+    return yol, sayfa(f"{m['seo_basligi']} | {MARKA}", m["aciklama"], yol, govde, ek_head, aktif=m.get("aktif", ""))
+
+
 def ana_sayfa(hizmetler):
     baslik = f"Teknopark Danışmanlığı ve Ar-Ge Teşvik Yönetimi | {MARKA}"
     govde = "\n".join(parca(p) for p in ANA_SAYFA_PARCALARI)
@@ -642,6 +696,13 @@ def main():
         yol, icerik = segment_sayfasi(meta, govde, yazilar)
         print("yazıldı:", yaz(yol, icerik))
         harita.append((yol, meta["guncelleme"]))
+    icerik_dir = os.path.join(KAYNAK, "icerik")
+    for ad in sorted(os.listdir(icerik_dir)):
+        if ad.endswith(".md"):
+            meta, govde = md_oku(os.path.join(icerik_dir, ad))
+            yol, icerik = icerik_sayfasi(dict(meta, _govde=govde), yazilar)
+            print("yazıldı:", yaz(yol, icerik))
+            harita.append((yol, meta["guncelleme"]))
     yol, icerik = hizmet_dizini(dizin, hizmetler)
     print("yazıldı:", yaz(yol, icerik))
     harita.append((yol, max([dizin[0]["guncelleme"]] + [h["guncelleme"] for h in hizmetler])))

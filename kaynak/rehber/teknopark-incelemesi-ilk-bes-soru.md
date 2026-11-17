@@ -9,7 +9,7 @@ kart_basligi: Teknopark İncelemelerinde Sorulan İlk Beş Soru
 cagri: İnceleme öncesi uygunluk kontrolü için görüşelim.
 yazar: Hakan Gümüş
 yayin: 2026-10-23
-guncelleme: 2026-11-16
+guncelleme: 2026-11-17
 ---
 Teknopark firmalarında yapılan vergi incelemelerinde eleştiri konuları büyük ölçüde tekrar ediyor. İstisna hesabının aritmetiği nadiren tartışılıyor; tartışılan, hesabın arkasındaki kayıt. Bu yazı incelemede ilk sorulan beş soruyu, her birinde hangi kanıtın istendiğini ve inceleme başlamadan önce neler yapılabileceğini anlatıyor.
 
@@ -51,15 +51,15 @@ Donanım ve yazılımı birlikte satan şirketlerde ayrı bir soru daha vardır:
 
 **İncelemede ne istenir:** Zaman kayıtları, aylık muafiyet raporları, sigorta bildirimleri, bordro ve görev tanımları; uzaktan çalışılan sürelerde yönetici şirkete yapılan bildirim ve onay.
 
-**Sık görülen sorun:** Bu kayıtların birbirini tutmaması. Destek personeli teşvikinin, Ar-Ge personeli sayısının %10'unu aşan kısma da uygulanması. Ortak ve yöneticilerin, görev tanımı ve fiili çalışmayla desteklenmeden Ar-Ge personeli olarak bildirilmesi. 2026 için bölge dışı çalışma oranlarını ve bilişim personeli ayrımını [bu yazıda](/rehber/teknopark-uzaktan-calisma-oranlari-2026/) anlattık.
+**Sık görülen sorun:** Bu kayıtların birbirini tutmaması. Destek personeli teşvikinin, Ar-Ge personeli sayısının %10'unu (toplam personeli 15'e kadar olan firmalarda %20'sini) aşan kısma da uygulanması. Ortak ve yöneticilerin, görev tanımı ve fiili çalışmayla desteklenmeden Ar-Ge personeli olarak bildirilmesi. 2026 için bölge dışı çalışma oranlarını ve bilişim personeli ayrımını [bu yazıda](/rehber/teknopark-uzaktan-calisma-oranlari-2026/) anlattık.
 
 ## 4. Faturalar projelerle ve KDV uygulamasıyla uyumlu mu?
 
-KDV istisnası, bölgede üretilen ve kanunda sayılan uygulama yazılımlarının teslim ve hizmetlerine uygulanır. Yazılımla birlikte satılan donanım ve yazılım geliştirme niteliği taşımayan hizmetler bu istisnadan yararlanmaz. İstisna kısmi bir istisnadır: istisna kapsamındaki işlemlere ait yüklenilen KDV indirilemez, maliyete ya da gidere alınır.
+KDV istisnası, bölgede üretilen ve kanunda sayılan uygulama yazılımlarının teslim ve hizmetlerine uygulanır. Yazılımla birlikte satılan donanım ve yazılım geliştirme niteliği taşımayan hizmetler bu istisnadan yararlanmaz. 2019'dan bu yana bu işlemlerde yüklenilen KDV indirim konusu yapılabilir; indirimle giderilemeyen kısım ise iade edilmez.
 
-**İncelemede ne istenir:** Faturaların proje kodlarıyla eşleşmesi, fatura açıklamalarının yapılan işi doğru tanımlaması ve istisnalı satışlara ait yüklenilen KDV'nin nasıl işlendiği.
+**İncelemede ne istenir:** Faturaların proje kodlarıyla eşleşmesi, fatura açıklamalarının yapılan işi doğru tanımlaması ve istisnalı satışlar ile KDV'li satışların ayrımı.
 
-**Sık görülen sorun:** Fatura açıklamasının projeyle eşleşmemesi ya da işi tanımlamayan genel ifadeler içermesi. Tek başına küçük bir hata gibi görünse de istisnanın dayanağını zayıflatır. İstisnalı satışlara ait yüklenilen KDV'nin indirim konusu yapılması ise doğrudan vergi farkı doğurur.
+**Sık görülen sorun:** Fatura açıklamasının projeyle eşleşmemesi ya da işi tanımlamayan genel ifadeler içermesi. Tek başına küçük bir hata gibi görünse de istisnanın dayanağını zayıflatır. Bir diğer sorun, donanım, kurulum veya bakım bedelinin yazılım bedeliyle aynı fatura satırında gösterilip tamamına istisna uygulanmasıdır; istisna dışında kalan kısım doğrudan KDV farkı doğurur.
 
 ## 5. Proje dosyası güncel mi?
 
@@ -87,4 +87,4 @@ Bu yüzden yıl sonu kapanışından önce kendi kayıtlarınıza bir incelemeci
 
 İncelemede savunulan şey istisna değil, kayıt düzenidir. Ve kayıt düzeni inceleme başladıktan sonra kurulamıyor. İlk yıl kurulması gereken düzeni [bu yazıda](/rehber/teknoparkta-ilk-yil-yukumlulukleri/), tasdik raporu sürecini [burada](/rehber/istisna-ymm-tasdik-raporu/) anlattık.
 
-> Dayanak: 4691 s. Teknoloji Geliştirme Bölgeleri Kanunu geç. md. 2 ve Uygulama Yönetmeliği; 3065 s. KDVK md. 30/a; 213 s. VUK md. 114, 253 ve 371; 6102 s. TTK md. 82.
+> Dayanak: 4691 s. Teknoloji Geliştirme Bölgeleri Kanunu geç. md. 2 ve Uygulama Yönetmeliği; 3065 s. KDVK geç. md. 20; 213 s. VUK md. 114, 253 ve 371; 6102 s. TTK md. 82.
