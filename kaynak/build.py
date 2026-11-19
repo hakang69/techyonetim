@@ -149,6 +149,12 @@ def sayfa(baslik, aciklama, yol, govde, ek_head="", og_turu="website", aktif="",
 <footer class="ftr">
   <div class="wrap">
     <div class="firma"><strong>{MARKA}</strong>{UNVAN}<br>{ADRES}<br>{TELEFON} · <a href="mailto:{EPOSTA}">{EPOSTA}</a></div>
+    <nav class="kurumsal" aria-label="Kurumsal">
+      <a href="/hakkimizda/">Hakkımızda</a>
+      <a href="/iletisim/">İletişim</a>
+      <a href="/kvkk/">KVKK Aydınlatma Metni</a>
+      <a href="/gizlilik/">Gizlilik Politikası</a>
+    </nav>
     <nav aria-label="Alt menü">
       <a href="/teknoparka-gecis/">Teknoparka geçiş</a>
       <a href="/geleneksel-sirketler-icin-teknopark/">Geleneksel şirketler için teknopark</a>
@@ -158,10 +164,6 @@ def sayfa(baslik, aciklama, yol, govde, ek_head="", og_turu="website", aktif="",
       <a href="/teknopark-tesvikleri/">Teknopark teşvikleri</a>
       <a href="/mevzuat-gundemi/">Mevzuat gündemi</a>
       <a href="/rehber/">Rehber</a>
-      <a href="/hakkimizda/">Hakkımızda</a>
-      <a href="/iletisim/">İletişim</a>
-      <a href="/kvkk/">KVKK Aydınlatma Metni</a>
-      <a href="/gizlilik/">Gizlilik Politikası</a>
     </nav>
     <div class="telif">© {datetime.date.today().year} {UNVAN} Tüm hakları saklıdır.</div>
   </div>
